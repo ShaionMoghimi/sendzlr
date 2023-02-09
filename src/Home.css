@@ -1,0 +1,28 @@
+.coolGrey {
+  background-color: #51606b;
+}
+
+.fullSize {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: #51606b;
+}
+
+.mainBody {
+  float: left;
+  width: 75%;
+}
+
+.sideBar {
+  color: #ebe1d5;
+  background-color: #303c45;
+  width: 25%;
+  padding: 1rem;
+}
