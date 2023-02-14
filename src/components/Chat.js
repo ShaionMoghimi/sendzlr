@@ -4,7 +4,7 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './Chat.css';
 import Message from "./Message";
 
-export default function Chat() {
+export default function Chat(props) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [socketUrl, setSocketUrl] = useState('ws://127.0.0.1:8999');
@@ -34,7 +34,9 @@ export default function Chat() {
     setMessage('');
   }
 
-  const handleSendMessage = useCallback(() => sendMessage(message));
+  const handleSendMessage = useCallback(() => 
+    sendMessage(JSON.stringify({username: props.user, message}))
+  );
 
   return (
     <div className="tall">
