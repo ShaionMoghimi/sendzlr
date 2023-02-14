@@ -1,0 +1,26 @@
+.me {
+  background-color: green;
+  border-radius: 3px;
+  padding: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  max-width: 60%;
+}
+
+.meWrap {
+  display: flex;
+  justify-content: end;
+}
+
+.other {
+  background-color: darkred;
+  border-radius: 5px;
+  padding: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  max-width: 60%;
+}

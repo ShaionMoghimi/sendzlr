@@ -2,6 +2,7 @@ import { Form } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './Chat.css';
+import Message from "./Message";
 
 export default function Chat() {
   const [message, setMessage] = useState('');
@@ -12,6 +13,7 @@ export default function Chat() {
 
   useEffect(() => {
     if (lastMessage !== null) {
+      console.log(lastMessage);
       setMessages((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage]);
@@ -26,8 +28,10 @@ export default function Chat() {
 
   const messageSend = (e) => {
     e.preventDefault();
-    console.log('Sending message!');
-    handleSendMessage();
+    const m = { sender: 'me', data: message };
+    setMessages((prev) => prev.concat(m))
+    handleSendMessage(m);
+    setMessage('');
   }
 
   const handleSendMessage = useCallback(() => sendMessage(message));
@@ -35,17 +39,11 @@ export default function Chat() {
   return (
     <div className="tall">
       <div className="messages mb-2">
-        {messages.map((m) => <div key={m}>{m.data}</div>)}
+        {messages.map((m) => <Message user={m.sender} data={m.data} />)}
       </div>
-      <span>The websocket is currently {connectionStatus}</span>
       <Form onSubmit={(e) => messageSend(e)}>
         <Form.Control type="text" placeholder="Send a message" onChange={(e) => setMessage(e.target.value)} value={message} />
       </Form>
-      {/*<div className="mt-2 mb-2">
-        <Form onSubmit={(e) => messageSend(e)}>
-          <Form.Control type="text" placeholder="Send a message" onChange={(e) => setMessage(e.target.value)} value={message} />
-        </Form>
-  </div>*/}
     </div>
   )
 }

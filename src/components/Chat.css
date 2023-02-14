@@ -1,6 +1,9 @@
 .messages {
   height: 90%;
   color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 .tall {
